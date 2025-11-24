@@ -11,55 +11,43 @@ class Rol extends Model
 
     protected $table = 'roles';
     protected $primaryKey = 'id_roles';
-
-    protected $fillable = [
-        'nombre'
-    ];
-
+    protected $fillable = ['nombre'];
     public $timestamps = true;
 
     /**
-     * Verificar si es un rol del sistema
+     * Relación con usuarios
      */
-    public function isSystemDefault()
+    public function users()
     {
-        return in_array($this->nombre, ['admin', 'tecnico', 'usuario']);
+        return $this->hasMany(User::class, 'rol_id', 'id_roles');
     }
 
     /**
-     * Relación con usuarios (si decides modificar la tabla users para usar rol_id)
-     * Por ahora retornamos una colección vacía hasta que modifiques la migración
+     * Relación con permisos
      */
-    public function usuarios()
-    {
-        // Si tu tabla users tiene un campo 'rol_id'
-        // return $this->hasMany(User::class, 'rol_id', 'id_roles');
+// app/Models/Rol.php
+public function permisos()
+{
+    return $this->belongsToMany(
+        Permiso::class,
+        'rol_permisos',  // tabla pivote
+        'rol_id',        // FK de rol en la pivote
+        'id_permisos'    // FK de permiso en la pivote
+    )
+    ->withPivot('estado') // trae el campo estado
+    ->wherePivot('estado', true); // solo permisos activos
+}
 
-        // Por ahora retornamos una colección vacía
-        return collect();
-    }
 
-    /**
-     * Scope para roles personalizados
-     */
-    public function scopeCustom($query)
-    {
-        return $query->whereNotIn('nombre', ['admin', 'tecnico', 'usuario']);
-    }
 
-    /**
-     * Scope para ordenar por nombre
-     */
-    public function scopeOrderByName($query)
-    {
-        return $query->orderBy('nombre');
-    }
+
 
     /**
-     * Scope para buscar por nombre
+     * Determina si el rol es predeterminado del sistema.
      */
-    public function scopeSearch($query, $search)
+    public function isSystemDefault(): bool
     {
-        return $query->where('nombre', 'like', "%{$search}%");
+        $systemRoles = ['admin', 'tecnico', 'usuario'];
+        return in_array(strtolower($this->nombre), $systemRoles);
     }
 }

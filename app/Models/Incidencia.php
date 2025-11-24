@@ -24,7 +24,8 @@ class Incidencia extends Model
         'fecha_asignacion',
         'fecha_resolucion',
         'solucion',
-        'comentarios'
+        'comentarios',
+        'imagen_evidencia', // NUEVO CAMPO
     ];
 
     protected $casts = [
@@ -54,6 +55,21 @@ class Incidencia extends Model
     public function getCategoriaAttribute()
     {
         return $this->categoriaRelacion ? $this->categoriaRelacion->nombre : 'General';
+    }
+
+    // Método para obtener la imagen como URL de datos
+    public function getImagenEvidenciaUrlAttribute()
+    {
+        if ($this->imagen_evidencia) {
+            return 'data:image/jpeg;base64,' . $this->imagen_evidencia;
+        }
+        return null;
+    }
+
+    // Método para verificar si tiene imagen
+    public function getTieneImagenAttribute()
+    {
+        return !empty($this->imagen_evidencia);
     }
 
     // Scopes
@@ -114,5 +130,47 @@ class Incidencia extends Model
         return $usuario->id === $this->usuario_id ||
             $usuario->id === $this->tecnico_id ||
             $usuario->isAdmin();
+    }
+
+    // Método para calcular días restantes
+    public function getDiasRestantesAttribute()
+    {
+        if (!$this->fecha_limite) {
+            return null;
+        }
+
+        $now = now();
+        $fechaLimite = $this->fecha_limite;
+
+        if ($fechaLimite < $now) {
+            return -$fechaLimite->diffInDays($now); // Negativo si está vencido
+        }
+
+        return $fechaLimite->diffInDays($now);
+    }
+
+    // Método para verificar si está vencida
+    public function getEstaVencidaAttribute()
+    {
+        if (!$this->fecha_limite) {
+            return false;
+        }
+
+        return $this->fecha_limite < now() && !in_array($this->estado, ['resuelta', 'cerrada']);
+    }
+    // En App\Models\Incidencia
+    public function solicitudesAprobacion()
+    {
+        return $this->hasMany(SolicitudAprobacion::class, 'incidencia_id', 'id_incidencias');
+    }
+
+    public function tieneSolicitudesPendientes()
+    {
+        return $this->solicitudesAprobacion()->where('estado', 'pendiente')->exists();
+    }
+
+    public function getSolicitudAprobacionPendienteAttribute()
+    {
+        return $this->solicitudesAprobacion()->where('estado', 'pendiente')->first();
     }
 }

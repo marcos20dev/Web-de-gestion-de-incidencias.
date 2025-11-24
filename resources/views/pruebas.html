@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Incidencia - Sistema ITS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#1e40af',
+                        success: '#10b981',
+                        warning: '#f59e0b',
+                        danger: '#ef4444',
+                        dark: '#1f2937'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <header class="mb-8">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-3xl font-bold text-dark">Sistema de Gestión de Incidencias</h1>
+                    <nav class="flex space-x-4 mt-2 text-sm text-gray-600">
+                        <a href="#" class="hover:text-primary">Dashboard</a>
+                        <span>></span>
+                        <a href="#" class="hover:text-primary">Incidencias</a>
+                        <span>></span>
+                        <span class="text-primary font-medium">Detalle INC-2023-0456</span>
+                    </nav>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <input type="text" placeholder="Buscar..." class="pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary">
+                        <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold">AD</div>
+                        <span class="font-medium">Ana Delgado</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Contenido Principal -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Panel de Detalle de Incidencia -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <!-- Header de la Incidencia -->
+                    <div class="bg-gradient-to-r from-primary to-secondary p-6 text-white">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h2 class="text-2xl font-bold mb-2">INC-2023-0456 - Error en sistema de facturación</h2>
+                                <div class="flex items-center space-x-4">
+                                    <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm">Alta Prioridad</span>
+                                    <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm">Sistema de Facturación</span>
+                                    <span class="bg-warning text-dark px-3 py-1 rounded-full text-sm font-medium">En Progreso</span>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-lg font-semibold">ID: <span class="font-normal">#0456</span></div>
+                                <div class="text-sm mt-2">Creada: 15/09/2023 09:45 AM</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Detalles de la Incidencia -->
+                    <div class="p-6">
+                        <!-- Información General y Técnico -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <!-- Información General -->
+                            <div>
+                                <h3 class="text-lg font-semibold mb-3 text-dark flex items-center">
+                                    <i class="fas fa-info-circle mr-2 text-primary"></i>
+                                    Información General
+                                </h3>
+                                <div class="space-y-3">
+                                    <div class="flex">
+                                        <span class="w-40 font-medium text-gray-600">Reportada por:</span>
+                                        <div>
+                                            <span class="font-medium">María González López</span>
+                                            <div class="text-sm text-gray-600">maria.gonzalez@empresa.com</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex">
+                                        <span class="w-40 font-medium text-gray-600">Departamento:</span>
+                                        <span>Finanzas</span>
+                                    </div>
+                                    <div class="flex">
+                                        <span class="w-40 font-medium text-gray-600">Fecha creación:</span>
+                                        <span>15/09/2023 09:45 AM</span>
+                                    </div>
+                                    <div class="flex">
+                                        <span class="w-40 font-medium text-gray-600">Última actualización:</span>
+                                        <span>18/09/2023 02:30 PM</span>
+                                    </div>
+                                    <div class="flex">
+                                        <span class="w-40 font-medium text-gray-600">Ubicación:</span>
+                                        <span>Edificio A - Piso 3</span>
+                                    </div>
+                                    <div class="flex">
+                                        <span class="w-40 font-medium text-gray-600">Fecha límite:</span>
+                                        <span class="text-warning font-medium">20/09/2023 06:00 PM</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Información del Técnico -->
+                            <div>
+                                <h3 class="text-lg font-semibold mb-3 text-dark flex items-center">
+                                    <i class="fas fa-user-cog mr-2 text-primary"></i>
+                                    Técnico Asignado
+                                </h3>
+                                <div class="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg mb-3">
+                                    <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white font-bold text-xl">CR</div>
+                                    <div class="flex-1">
+                                        <div class="font-semibold">Carlos Rodríguez Méndez</div>
+                                        <div class="text-sm text-gray-600">Especialista en Sistemas</div>
+                                        <div class="text-sm text-gray-600">carlos.rodriguez@empresa.com</div>
+                                        <div class="flex items-center mt-1">
+                                            <span class="bg-success text-white px-2 py-1 rounded-full text-xs mr-2">Disponible</span>
+                                            <span class="text-warning mr-1"><i class="fas fa-star"></i></span>
+                                            <span class="text-sm">4.8 (126 evaluaciones)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-blue-50 p-3 rounded-lg">
+                                    <div class="text-sm text-blue-800">
+                                        <i class="fas fa-clock mr-1"></i>
+                                        <span class="font-medium">Asignado el:</span> 16/09/2023 10:20 AM
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Descripción y Categoría -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <!-- Descripción del Problema -->
+                            <div>
+                                <h3 class="text-lg font-semibold mb-3 text-dark flex items-center">
+                                    <i class="fas fa-file-alt mr-2 text-primary"></i>
+                                    Descripción del Problema
+                                </h3>
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <p class="text-gray-700">El sistema de facturación no está generando correctamente las facturas para clientes corporativos. Al intentar emitir una factura con descuento por volumen, el sistema muestra el error "Referencia no válida" y no permite completar el proceso. Esto está afectando nuestra capacidad de facturar a nuestros clientes más importantes.</p>
+                                </div>
+                            </div>
+
+                            <!-- Información de Categoría -->
+                            <div>
+                                <h3 class="text-lg font-semibold mb-3 text-dark flex items-center">
+                                    <i class="fas fa-tag mr-2 text-primary"></i>
+                                    Categoría
+                                </h3>
+                                <div class="flex items-center space-x-3 p-4 bg-gray-50 rounded-lg">
+                                    <div class="w-12 h-12 rounded-lg flex items-center justify-center text-white font-bold" style="background-color: #ef4444;">
+                                        <i class="fas fa-cog"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-semibold">Sistema de Facturación</div>
+                                        <div class="text-sm text-gray-600">Problemas relacionados con el módulo de facturación</div>
+                                        <div class="text-xs text-gray-500 mt-1">Categoría ID: CAT-003</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Solución y Comentarios -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <!-- Solución Aplicada -->
+                            <div>
+                                <h3 class="text-lg font-semibold mb-3 text-dark flex items-center">
+                                    <i class="fas fa-check-circle mr-2 text-success"></i>
+                                    Solución Aplicada
+                                </h3>
+                                <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                                    <p class="text-green-800">Se ha corregido el error en el módulo de validación de referencias para clientes corporativos. Se actualizó la lógica de cálculo de descuentos por volumen y se implementaron pruebas unitarias para prevenir futuros errores. La solución fue implementada en el ambiente de producción y verificada por el equipo de calidad.</p>
+                                    <div class="mt-3 text-sm text-green-700">
+                                        <i class="fas fa-calendar-check mr-1"></i>
+                                        <strong>Resuelto el:</strong> 18/09/2023 02:30 PM
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Comentarios Adicionales -->
+                            <div>
+                                <h3 class="text-lg font-semibold mb-3 text-dark flex items-center">
+                                    <i class="fas fa-comments mr-2 text-primary"></i>
+                                    Comentarios
+                                </h3>
+                                <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                                    <p class="text-blue-800">El cliente corporativo ABC Corporation requiere facturación urgente. Se sugiere contactar al departamento de ventas para informar sobre la resolución y coordinar la facturación pendiente.</p>
+                                    <div class="mt-3 text-sm text-blue-700">
+                                        <i class="fas fa-user mr-1"></i>
+                                        <strong>Por:</strong> Carlos Rodríguez
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Historial de Actualizaciones -->
+                        <div class="mb-6">
+                            <h3 class="text-lg font-semibold mb-4 text-dark flex items-center">
+                                <i class="fas fa-history mr-2 text-primary"></i>
+                                Historial de Actualizaciones
+                            </h3>
+                            <div class="space-y-4">
+                                <!-- Actualización 1 -->
+                                <div class="flex">
+                                    <div class="flex flex-col items-center mr-4">
+                                        <div class="w-3 h-3 bg-success rounded-full"></div>
+                                        <div class="w-0.5 h-full bg-gray-300 mt-1"></div>
+                                    </div>
+                                    <div class="pb-4 flex-1">
+                                        <div class="font-medium text-success">Incidencia Resuelta</div>
+                                        <div class="text-sm text-gray-600">Por Carlos Rodríguez - 18/09/2023 02:30 PM</div>
+                                        <div class="mt-1 text-sm bg-green-50 p-3 rounded">Se implementó la corrección en el módulo de cálculo de descuentos. La incidencia ha sido verificada y marcada como resuelta.</div>
+                                    </div>
+                                </div>
+
+                                <!-- Actualización 2 -->
+                                <div class="flex">
+                                    <div class="flex flex-col items-center mr-4">
+                                        <div class="w-3 h-3 bg-primary rounded-full"></div>
+                                        <div class="w-0.5 h-full bg-gray-300 mt-1"></div>
+                                    </div>
+                                    <div class="pb-4 flex-1">
+                                        <div class="font-medium">Diagnóstico Completado</div>
+                                        <div class="text-sm text-gray-600">Por Carlos Rodríguez - 17/09/2023 11:15 AM</div>
+                                        <div class="mt-1 text-sm bg-gray-50 p-3 rounded">Identificado el problema en el módulo de validación de referencias para clientes corporativos. Se está trabajando en la solución.</div>
+                                    </div>
+                                </div>
+
+                                <!-- Actualización 3 -->
+                                <div class="flex">
+                                    <div class="flex flex-col items-center mr-4">
+                                        <div class="w-3 h-3 bg-primary rounded-full"></div>
+                                        <div class="w-0.5 h-full bg-gray-300 mt-1"></div>
+                                    </div>
+                                    <div class="pb-4 flex-1">
+                                        <div class="font-medium">Técnico Asignado</div>
+                                        <div class="text-sm text-gray-600">Por Ana Delgado - 16/09/2023 10:20 AM</div>
+                                        <div class="mt-1 text-sm bg-gray-50 p-3 rounded">Incidencia asignada al especialista Carlos Rodríguez para su diagnóstico y resolución.</div>
+                                    </div>
+                                </div>
+
+                                <!-- Actualización 4 -->
+                                <div class="flex">
+                                    <div class="flex flex-col items-center mr-4">
+                                        <div class="w-3 h-3 bg-primary rounded-full"></div>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="font-medium">Incidencia Creada</div>
+                                        <div class="text-sm text-gray-600">Por María González - 15/09/2023 09:45 AM</div>
+                                        <div class="mt-1 text-sm bg-gray-50 p-3 rounded">Reportado problema en el sistema de facturación para clientes corporativos.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel Lateral -->
+            <div class="lg:col-span-1">
+                <!-- Panel de Asignación de Técnico -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden sticky top-6">
+                    <div class="bg-gradient-to-r from-success to-green-500 p-4 text-white">
+                        <h2 class="text-xl font-bold flex items-center">
+                            <i class="fas fa-user-cog mr-2"></i>
+                            Asignar Técnico
+                        </h2>
+                    </div>
+                    <div class="p-4">
+                        <!-- Búsqueda y Filtros -->
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Buscar Técnico</label>
+                            <div class="relative">
+                                <input type="text" placeholder="Nombre o especialidad..." class="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary">
+                                <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                            </div>
+                        </div>
+
+                        <!-- Lista de Técnicos -->
+                        <div class="space-y-3 max-h-80 overflow-y-auto pr-2 mb-4">
+                            <!-- Técnico 1 -->
+                            <div class="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer transition duration-200">
+                                <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold">AM</div>
+                                <div class="ml-3 flex-1">
+                                    <div class="font-medium">Ana Martínez López</div>
+                                    <div class="text-xs text-gray-600">Especialista en Bases de Datos</div>
+                                    <div class="flex items-center mt-1">
+                                        <span class="bg-success text-white px-2 py-1 rounded-full text-xs mr-2">Disponible</span>
+                                        <span class="text-warning mr-1 text-xs"><i class="fas fa-star"></i> 4.6</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Técnico 2 -->
+                            <div class="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer transition duration-200">
+                                <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold">LS</div>
+                                <div class="ml-3 flex-1">
+                                    <div class="font-medium">Luis Sánchez García</div>
+                                    <div class="text-xs text-gray-600">Especialista en Redes</div>
+                                    <div class="flex items-center mt-1">
+                                        <span class="bg-warning text-white px-2 py-1 rounded-full text-xs mr-2">Ocupado</span>
+                                        <span class="text-warning mr-1 text-xs"><i class="fas fa-star"></i> 4.9</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Técnico 3 (Actual) -->
+                            <div class="flex items-center p-3 border-2 border-primary rounded-lg bg-blue-50 cursor-pointer">
+                                <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold">CR</div>
+                                <div class="ml-3 flex-1">
+                                    <div class="font-medium">Carlos Rodríguez Méndez</div>
+                                    <div class="text-xs text-gray-600">Especialista en Sistemas</div>
+                                    <div class="flex items-center mt-1">
+                                        <span class="bg-success text-white px-2 py-1 rounded-full text-xs mr-2">Disponible</span>
+                                        <span class="text-warning mr-1 text-xs"><i class="fas fa-star"></i> 4.8</span>
+                                    </div>
+                                </div>
+                                <div class="text-primary">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                            </div>
+
+                            <!-- Técnico 4 -->
+                            <div class="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer transition duration-200">
+                                <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center text-white font-bold">EP</div>
+                                <div class="ml-3 flex-1">
+                                    <div class="font-medium">Elena Pérez Ruiz</div>
+                                    <div class="text-xs text-gray-600">Especialista en Seguridad</div>
+                                    <div class="flex items-center mt-1">
+                                        <span class="bg-success text-white px-2 py-1 rounded-full text-xs mr-2">Disponible</span>
+                                        <span class="text-warning mr-1 text-xs"><i class="fas fa-star"></i> 4.7</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Acciones -->
+                        <div class="space-y-3">
+                            <button class="w-full bg-primary hover:bg-secondary text-white py-3 px-4 rounded-lg font-medium transition duration-200 flex items-center justify-center">
+                                <i class="fas fa-user-check mr-2"></i>
+                                Confirmar Asignación
+                            </button>
+                            <button class="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 py-2 px-4 rounded-lg font-medium transition duration-200 flex items-center justify-center">
+                                <i class="fas fa-comment-alt mr-2"></i>
+                                Agregar Comentario
+                            </button>
+                            <button class="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 py-2 px-4 rounded-lg font-medium transition duration-200 flex items-center justify-center">
+                                <i class="fas fa-print mr-2"></i>
+                                Imprimir Reporte
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Panel de Métricas -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden mt-6">
+                    <div class="bg-gradient-to-r from-warning to-amber-500 p-4 text-white">
+                        <h2 class="text-xl font-bold flex items-center">
+                            <i class="fas fa-chart-bar mr-2"></i>
+                            Métricas de la Incidencia
+                        </h2>
+                    </div>
+                    <div class="p-4">
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">Tiempo de Respuesta:</span>
+                                <span class="font-medium text-success">2 horas 15 min</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">Tiempo de Resolución:</span>
+                                <span class="font-medium text-success">3 días 4 horas</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">SLA Cumplido:</span>
+                                <span class="font-medium text-success">Sí</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">Prioridad:</span>
+                                <span class="font-medium text-danger">Alta</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">Satisfacción:</span>
+                                <span class="font-medium text-warning">Pendiente</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Script para manejar la selección de técnicos
+        document.addEventListener('DOMContentLoaded', function() {
+            const techItems = document.querySelectorAll('.cursor-pointer');
+
+            techItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Remover selección previa
+                    techItems.forEach(i => {
+                        i.classList.remove('border-2', 'border-primary', 'bg-blue-50');
+                        i.classList.add('border', 'border-gray-200');
+
+                        // Remover icono de check
+                        const checkIcon = i.querySelector('.fa-check-circle');
+                        if (checkIcon) {
+                            checkIcon.parentElement.remove();
+                        }
+                    });
+
+                    // Aplicar selección al elemento clickeado
+                    this.classList.remove('border', 'border-gray-200');
+                    this.classList.add('border-2', 'border-primary', 'bg-blue-50');
+
+                    // Agregar icono de check
+                    const checkDiv = document.createElement('div');
+                    checkDiv.className = 'text-primary';
+                    checkDiv.innerHTML = '<i class="fas fa-check-circle"></i>';
+                    this.appendChild(checkDiv);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

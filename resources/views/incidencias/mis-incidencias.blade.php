@@ -172,27 +172,11 @@
                                 </td>
                                 <td class="py-4">
                                     <div class="flex items-center space-x-2">
-                                        <a href="{{ route('incidencias.show', $incidencia) }}"
+                                        <a href="{{ route('incidencias.mis.show', $incidencia) }}"
                                            class="p-2 text-surface-400 hover:text-primary-400 transition duration-200"
                                            title="Ver detalles">
                                             <i class="fas fa-eye"></i>
                                         </a>
-
-                                        @if($incidencia->puedeSerEditadaPor(Auth::user()))
-                                            <a href="{{ route('incidencias.edit', $incidencia) }}"
-                                               class="p-2 text-surface-400 hover:text-yellow-400 transition duration-200"
-                                               title="Editar">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                        @endif
-
-                                        @if($incidencia->estado === 'pendiente')
-                                            <button class="p-2 text-surface-400 hover:text-red-400 transition duration-200"
-                                                    onclick="cancelarIncidencia({{ $incidencia->id_incidencias }})"
-                                                    title="Cancelar">
-                                                <i class="fas fa-times"></i>
-                                            </button>
-                                        @endif
                                     </div>
                                 </td>
                             </tr>

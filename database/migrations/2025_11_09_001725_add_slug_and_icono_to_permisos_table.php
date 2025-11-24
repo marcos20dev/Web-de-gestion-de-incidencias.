@@ -1,6 +1,5 @@
 <?php
 
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -8,18 +7,20 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        Schema::create('permisos', function (Blueprint $table) {
-            $table->id('id_permisos');
-            $table->string('nombre');
-            $table->string('modulo')->default('Gestión de Incidencias');
+        Schema::table('permisos', function (Blueprint $table) {
+            // Campo slug único para asociar permisos con rutas
             $table->string('slug')->unique()->after('nombre')->nullable();
+
+            // Opcional: icono si quieres mostrarlo en el sidebar
             $table->string('icono')->nullable()->after('slug');
-            $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('permisos');
+        Schema::table('permisos', function (Blueprint $table) {
+            $table->dropColumn('slug');
+            $table->dropColumn('icono');
+        });
     }
 };

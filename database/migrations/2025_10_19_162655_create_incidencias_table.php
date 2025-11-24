@@ -16,6 +16,7 @@ return new class extends Migration
             $table->enum('estado', ['pendiente', 'asignada', 'en_proceso', 'resuelta', 'cerrada'])->default('pendiente');
             $table->string('categoria');
             $table->string('ubicacion')->nullable();
+            $table->text('imagen_evidencia')->nullable()->after('categoria_id');
 
             // Relaciones
             $table->unsignedBigInteger('usuario_id'); // Usuario que reporta

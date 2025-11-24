@@ -20,7 +20,7 @@
                         {{ Auth::user()->nombre }} {{ Auth::user()->apellido_paterno }}
                     </p>
                     <p class="text-xs text-surface-400 capitalize">
-                        {{ Auth::user()->rol }}
+                        {{ Auth::user()->rol?->nombre ?? 'Sin rol' }}
                     </p>
                 </div>
                 <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center">

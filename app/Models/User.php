@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use HasFactory, Notifiable;
 
     protected $fillable = [
         'nombre',
@@ -15,8 +16,8 @@ class User extends Authenticatable
         'apellido_materno',
         'email',
         'password',
-        'rol',
         'estado',
+        'rol_id', // ✅ clave foránea al rol
     ];
 
     protected $hidden = [
@@ -28,107 +29,43 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // Roles disponibles
-    const ROLES = [
-        'usuario' => 'Usuario',
-        'tecnico' => 'Técnico',
-        'admin' => 'Administrador'
-    ];
-
-    // Estados disponibles
-    const ESTADOS = [
-        'pendiente' => 'Pendiente',
-        'activo' => 'Activo',
-        'suspendido' => 'Suspendido'
-    ];
-
     /**
-     * Verificar si la cuenta está activa
+     * Relación con Rol
      */
-    public function isActive()
+    public function rol()
     {
-        return $this->estado === 'activo';
+        // Un usuario pertenece a un rol
+        return $this->belongsTo(Rol::class, 'rol_id', 'id_roles');
+    }
+    // En app/Models/User.php
+    public function estadosTecnico()
+    {
+        return $this->hasMany(EstadoTecnico::class, 'user_id');
     }
 
-    /**
-     * Verificar si la cuenta está pendiente
-     */
-    public function isPending()
+
+    public function hasRole($roles)
     {
-        return $this->estado === 'pendiente';
+        // obtiene el nombre del rol del usuario actual
+        $userRole = $this->rol ? strtolower($this->rol->nombre) : null;
+
+        // convierte roles a arreglo
+        $roles = is_array($roles) ? $roles : [$roles];
+
+        // compara insensible a mayúsculas/minúsculas
+        return in_array($userRole, array_map('strtolower', $roles));
     }
 
-    /**
-     * Verificar si la cuenta está suspendida
-     */
-    public function isSuspended()
-    {
-        return $this->estado === 'suspendido';
-    }
 
     /**
-     * Verificar si el usuario es administrador
-     */
-    public function isAdmin()
-    {
-        return $this->rol === 'admin';
-    }
-
-    /**
-     * Verificar si el usuario es técnico
-     */
-    public function isTecnico()
-    {
-        return $this->rol === 'tecnico';
-    }
-
-    /**
-     * Verificar si el usuario es usuario regular
-     */
-    public function isUsuario()
-    {
-        return $this->rol === 'usuario';
-    }
-
-    /**
-     * Obtener el nombre completo
+     * Nombre completo
      */
     public function getNombreCompletoAttribute()
     {
-        return $this->nombre . ' ' . $this->apellido_paterno . ' ' . $this->apellido_materno;
+        return "{$this->nombre} {$this->apellido_paterno} {$this->apellido_materno}";
     }
-
-    /**
-     * Scope para usuarios activos
-     */
-    public function scopeActivos($query)
-    {
-        return $query->where('estado', 'activo');
-    }
-
-    /**
-     * Scope para usuarios pendientes
-     */
-    public function scopePendientes($query)
-    {
-        return $query->where('estado', 'pendiente');
-    }
-
-    /**
-     * Scope por rol
-     */
-    public function scopePorRol($query, $rol)
-    {
-        return $query->where('rol', $rol);
-    }
-
-
     public function rolData()
     {
-        return $this->belongsTo(Rol::class, 'rol', 'nombre');
+        return $this->belongsTo(Rol::class, 'rol_id');
     }
-
-
-
-
 }
