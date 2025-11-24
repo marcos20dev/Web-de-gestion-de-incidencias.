@@ -52,12 +52,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/{incidencia}/editar', [IncidenciaController::class, 'edit'])->name('incidencias.edit');
         Route::put('/{incidencia}', [IncidenciaController::class, 'update'])->name('incidencias.update');
 
-
         Route::get('/todas', [IncidenciaController::class, 'general'])->name('incidencias.general');
     });
-
-
-
 
     Route::prefix('solicitudes')->middleware('auth')->group(function () {
         // 🟢 Historial (debe ir antes del {solicitud})
@@ -90,8 +86,6 @@ Route::middleware('auth')->group(function () {
             ->name('solicitudes.show');
     });
 
-
-
     Route::get('/incidencias/asignadas', [IncidenciaController::class, 'asignadas'])
         ->name('incidencias.asignadas');
     // Ruta para la vista de detalle de técnicos
@@ -106,13 +100,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/incidencias/{id}/cambiar-estado', [IncidenciaController::class, 'cambiarEstado'])
         ->name('incidencias.cambiar-estado');
 
-
     // Ruta para que usuarios vean el detalle de sus incidencias (solo lectura)
     Route::get('/mis-incidencias/{id}', [IncidenciaController::class, 'showUsuario'])
         ->name('incidencias.mis.show')
         ->middleware('auth');
-
-
 
     Route::prefix('categorias')->group(function () {
         Route::get('/', [CategoriaController::class, 'index'])->name('categorias.index');
@@ -129,12 +120,6 @@ Route::middleware('auth')->group(function () {
 
     Route::put('/incidencias/{incidencia}/asignar', [IncidenciaController::class, 'asignarTecnico'])->name('incidencias.asignar');
 
-
-
-
-
-    // routes/web.php
-
     Route::prefix('gestion-usuarios')->group(function () {
         Route::get('/', [GestionUsuarioController::class, 'index'])->name('gestion-usuarios.index');
         Route::post('/', [GestionUsuarioController::class, 'store'])->name('gestion-usuarios.store');
@@ -144,17 +129,14 @@ Route::middleware('auth')->group(function () {
         Route::delete('/{id}', [GestionUsuarioController::class, 'destroy'])->name('gestion-usuarios.destroy');
     });
 
-
-    // routes/web.php
+    // ✅ GESTION ROLES - CORREGIDO (sin duplicados)
     Route::prefix('gestion-roles')->group(function () {
         Route::get('/', [GestionRolController::class, 'index'])->name('gestion-roles.index');
         Route::post('/', [GestionRolController::class, 'store'])->name('gestion-roles.store');
+        Route::get('/{rol}', [GestionRolController::class, 'show'])->name('gestion-roles.show');
         Route::put('/{rol}', [GestionRolController::class, 'update'])->name('gestion-roles.update');
         Route::delete('/{rol}', [GestionRolController::class, 'destroy'])->name('gestion-roles.destroy');
-
-        Route::get('/gestion-roles/{rol}', [GestionRolController::class, 'show'])->name('gestion-roles.show');
-        Route::get('/gestion-roles', [GestionRolController::class, 'index'])->name('gestion-roles.index');
-        Route::post('/gestion-roles/{rol}/permisos', [GestionRolController::class, 'updatePermisos'])->name('gestion-roles.update-permisos');
+        Route::post('/{rol}/permisos', [GestionRolController::class, 'updatePermisos'])->name('gestion-roles.update-permisos');
     });
 
     // Logout
