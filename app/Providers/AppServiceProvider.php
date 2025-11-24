@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Providers;
+use Illuminate\Support\Facades\URL;
 
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
@@ -26,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
         if ($this->app->environment('production')) {
             URL::forceScheme('https');
         }
-        
+
         View::composer('layouts.sidebar', function ($view) {
             $user = Auth::user();
 
